@@ -1,60 +1,73 @@
 public class Animals extends Entity {
+
     private String species;
-    private boolean isVaccinated;
-    private int lastVisit;
+    private int age;
+    private boolean vaccinated;
+    private double weight;
 
-
-    public Animals(int id, String name, String species, boolean isVaccinated, int lastVisit) {
-        super.setId(id);
-        super.setName(name);
+    public Animals(int id, String name, String createdDate, boolean active,
+                  String species, int age, boolean vaccinated, double weight) {
+        super(id, name, createdDate, active);
         this.species = species;
-        this.isVaccinated = isVaccinated;
-        this.lastVisit = lastVisit;
+        this.age = age;
+        this.vaccinated = vaccinated;
+        this.weight = weight;
     }
 
-
-
-
-
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public void setVaccinated(boolean isVaccinated) {
-        this.isVaccinated = isVaccinated;
-    }
-
-    public void setLastVisit(int lastVisit) {
-        this.lastVisit = lastVisit;
-    }
-
-
-    public int getId() {
-        return super.getId();
-    }
-
-    public String getAnimalName() {
-        return super.getName();
+    public Animals() {
     }
 
     public String getSpecies() {
         return species;
     }
 
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public boolean isVaccinated() {
-        return isVaccinated;
+        return vaccinated;
     }
 
-    public int getLastVisit() {
-        return lastVisit;
+    public void setVaccinated(boolean vaccinated) {
+        this.vaccinated = vaccinated;
     }
 
+    public double getWeight() {
+        return weight;
+    }
 
-    public void printAnimalHistory() {
-        System.out.println("Animal History:");
-        System.out.println("Name: " + getAnimalName());
-        System.out.println("Species: " + species);
-        System.out.println("Is Vaccinated: " + isVaccinated);
-        System.out.println("Last Visit: " + lastVisit);
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void celebrateBirthday() {
+        this.age++;
+    }
+
+    public boolean needsVaccination() {
+        return !vaccinated;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", species='" + species + '\'' +
+                ", age=" + age +
+                ", vaccinated=" + vaccinated +
+                ", weight=" + weight +
+                ", status=" + getStatus() +
+                '}';
     }
 }
+

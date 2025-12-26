@@ -1,26 +1,47 @@
 public class Main {
+
     public static void main(String[] args) {
 
-        Animals animal1 = new Animals(1, "Dog", "Alabai", true, 20251225);
+        VetClinic clinic = new VetClinic(
+                "Happy Paws Vet Clinic",
+                "Almaty, Abaya 25",
+                "+7-777-123-45-67",
+                12
+        );
 
-        Client client1 = new Client("Sapar", 101, "Kabanbai Batyr 60A/13", 870012345);
+        Animals animal1 = new Animals(
+                1,
+                "Buddy",
+                "2025-01-10",
+                true,
+                "Dog",
+                3,
+                false,
+                12.5
+        );
 
-        VetClinic vetClinic1 = new VetClinic(1, "Arman Vet Clinic", client1, animal1);
+        System.out.println("=== Vet Clinic Info ===");
+        System.out.println(clinic);
+        System.out.println();
 
+        System.out.println("=== Animal Info ===");
+        System.out.println(animal1);
 
-        System.out.println("Clinic ID: " + vetClinic1.getId());
-        System.out.println("Clinic Name: " + vetClinic1.getName());
+        System.out.println();
+        System.out.println("Needs vaccination: " + animal1.needsVaccination());
 
-        System.out.println("\n--- Animal Info ---");
-        System.out.println("Animal ID: " + vetClinic1.getAnimal().getId());
-        System.out.println("Animal Name: " + vetClinic1.getAnimal().getAnimalName());
-        System.out.println("Species: " + vetClinic1.getAnimal().getSpecies());
-        System.out.println("Vaccinated: " + vetClinic1.getAnimal().isVaccinated());
+        animal1.setVaccinated(true);
+        animal1.celebrateBirthday();
+        animal1.setWeight(13.2);
 
-        System.out.println("\n--- Client Info ---");
-        System.out.println("Client Name: " + vetClinic1.getClient().getClientName());
-        System.out.println("Address: " + vetClinic1.getClient().getAddress());
-        System.out.println("Phone: " + vetClinic1.getClient().getPhoneNumber());
+        clinic.admitAnimal();
+
+        System.out.println();
+        System.out.println("=== Updated Info ===");
+        System.out.println(animal1);
+        System.out.println("Clinic can accept more animals: " + clinic.canAcceptMoreAnimals());
+        System.out.println("Total animals in clinic: " + clinic.getAnimalsCount());
     }
 }
+
 
