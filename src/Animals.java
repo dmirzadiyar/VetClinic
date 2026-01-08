@@ -6,16 +6,17 @@ public class Animals extends Entity {
     private double weight;
 
     public Animals(int id, String name, String createdDate, boolean active,
-                  String species, int age, boolean vaccinated, double weight) {
-        super(id, name, createdDate, active);
+                   String species, int age, boolean vaccinated, double weight) {
+
+        super(id, name, createdDate, active); // ОБЯЗАТЕЛЬНО
         this.species = species;
         this.age = age;
         this.vaccinated = vaccinated;
         this.weight = weight;
     }
 
-    public Animals() {
-    }
+    // ❌ УДАЛИ пустой конструктор
+    // public Animals() {}
 
     public String getSpecies() {
         return species;
@@ -30,6 +31,9 @@ public class Animals extends Entity {
     }
 
     public void setAge(int age) {
+        if (age < 0) {
+            throw new IllegalArgumentException("Age cannot be negative");
+        }
         this.age = age;
     }
 
@@ -41,20 +45,14 @@ public class Animals extends Entity {
         this.vaccinated = vaccinated;
     }
 
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
     public void celebrateBirthday() {
-        this.age++;
+        age++;
     }
 
-    public boolean needsVaccination() {
-        return !vaccinated;
+    // ✅ ОБЯЗАТЕЛЬНАЯ реализация
+    @Override
+    public String work() {
+        return "Animal is being treated in the clinic";
     }
 
     @Override
@@ -70,4 +68,3 @@ public class Animals extends Entity {
                 '}';
     }
 }
-

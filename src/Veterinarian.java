@@ -8,66 +8,54 @@ public class Veterinarian extends Entity {
     public Veterinarian(int id, String name, String createdDate, boolean active,
                         String specialization, int experienceYears,
                         boolean available, double salary) {
+
         super(id, name, createdDate, active);
-        this.specialization = specialization;
-        this.experienceYears = experienceYears;
+        setSpecialization(specialization);
+        setExperienceYears(experienceYears);
+        setSalary(salary);
         this.available = available;
-        this.salary = salary;
-    }
-
-    public Veterinarian() {
-    }
-
-    public String getSpecialization() {
-        return specialization;
     }
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
 
-    public int getExperienceYears() {
-        return experienceYears;
-    }
-
     public void setExperienceYears(int experienceYears) {
+        if (experienceYears < 0) {
+            throw new IllegalArgumentException("Experience cannot be negative");
+        }
         this.experienceYears = experienceYears;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
     public void setSalary(double salary) {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
+        }
         this.salary = salary;
     }
-
-    /* ===== Additional logic methods ===== */
 
     public boolean canPerformSurgery() {
         return experienceYears >= 5;
     }
 
     public void assignShift() {
-        this.available = false;
+        available = false;
     }
 
+    // Override #1
+    @Override
+    public String work() {
+        return "Veterinarian treats animals";
+    }
+
+    // Override #2
     @Override
     public String toString() {
         return "Veterinarian{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", specialization='" + specialization + '\'' +
-                ", experienceYears=" + experienceYears +
-                ", available=" + available +
+                ", experience=" + experienceYears +
                 ", salary=" + salary +
                 ", status=" + getStatus() +
                 '}';

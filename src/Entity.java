@@ -1,4 +1,4 @@
-public class Entity {
+public abstract class Entity {
 
     private int id;
     private String name;
@@ -6,13 +6,10 @@ public class Entity {
     private boolean active;
 
     public Entity(int id, String name, String createdDate, boolean active) {
-        this.id = id;
-        this.name = name;
+        setId(id);
+        setName(name);
         this.createdDate = createdDate;
         this.active = active;
-    }
-
-    public Entity() {
     }
 
     public int getId() {
@@ -20,6 +17,9 @@ public class Entity {
     }
 
     public void setId(int id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be positive");
+        }
         this.id = id;
     }
 
@@ -28,6 +28,9 @@ public class Entity {
     }
 
     public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
         this.name = name;
     }
 
@@ -35,32 +38,14 @@ public class Entity {
         return createdDate;
     }
 
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
     public boolean isActive() {
         return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void deactivate() {
-        this.active = false;
     }
 
     public String getStatus() {
         return active ? "Active" : "Inactive";
     }
 
-    @Override
-    public String toString() {
-        return "Entity{id=" + id +
-                ", name='" + name + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", active=" + active +
-                '}';
-    }
+    // Полиморфизм
+    public abstract String work();
 }

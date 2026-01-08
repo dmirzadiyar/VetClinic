@@ -1,47 +1,81 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        VetClinic clinic = new VetClinic(
-                "Happy Paws Vet Clinic",
-                "Almaty, Abaya 25",
-                "+7-777-123-45-67",
-                12
-        );
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Entity> people = new ArrayList<>();
 
-        Animals animal1 = new Animals(
-                1,
-                "Buddy",
-                "2025-01-10",
-                true,
-                "Dog",
-                3,
-                false,
-                12.5
-        );
+        while (true) {
+            System.out.println("\n--- VET CLINIC MENU ---");
+            System.out.println("1. Add Veterinarian");
+            System.out.println("2. Add Client");
+            System.out.println("3. View All");
+            System.out.println("4. Exit");
+            System.out.print("Choice: ");
 
-        System.out.println("=== Vet Clinic Info ===");
-        System.out.println(clinic);
-        System.out.println();
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("=== Animal Info ===");
-        System.out.println(animal1);
+            if (choice == 1) {
+                System.out.print("ID: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
 
-        System.out.println();
-        System.out.println("Needs vaccination: " + animal1.needsVaccination());
+                System.out.print("Name: ");
+                String name = scanner.nextLine();
 
-        animal1.setVaccinated(true);
-        animal1.celebrateBirthday();
-        animal1.setWeight(13.2);
+                System.out.print("Specialization: ");
+                String spec = scanner.nextLine();
 
-        clinic.admitAnimal();
+                System.out.print("Experience years: ");
+                int exp = scanner.nextInt();
 
-        System.out.println();
-        System.out.println("=== Updated Info ===");
-        System.out.println(animal1);
-        System.out.println("Clinic can accept more animals: " + clinic.canAcceptMoreAnimals());
-        System.out.println("Total animals in clinic: " + clinic.getAnimalsCount());
+                System.out.print("Salary: ");
+                double salary = scanner.nextDouble();
+
+                people.add(new Veterinarian(
+                        id, name, "2025-01-01", true,
+                        spec, exp, true, salary
+                ));
+
+            } else if (choice == 2) {
+                System.out.print("ID: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Name: ");
+                String name = scanner.nextLine();
+
+                System.out.print("Address: ");
+                String address = scanner.nextLine();
+
+                System.out.print("Phone: ");
+                int phone = scanner.nextInt();
+
+                people.add(new Client(
+                        id, name, "2025-01-01", true,
+                        address, phone
+                ));
+
+            } else if (choice == 3) {
+
+                for (Entity e : people) {
+                    System.out.println(e);
+                    System.out.println("Work: " + e.work());
+
+                    // instanceof + casting
+                    if (e instanceof Veterinarian) {
+                        Veterinarian v = (Veterinarian) e;
+                        System.out.println("Can perform surgery: " + v.canPerformSurgery());
+                    }
+                }
+
+            } else if (choice == 4) {
+                break;
+            }
+        }
     }
 }
-
-

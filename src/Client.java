@@ -1,36 +1,31 @@
 public class Client extends Entity {
+
     private String address;
     private int phoneNumber;
 
-    public Client(String name, int id, String address, int phoneNumber) {
-        super.setName(name);
-        super.setId(id);
+    public Client(int id, String name, String createdDate, boolean active,
+                  String address, int phoneNumber) {
+
+        super(id, name, createdDate, active);
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
 
-
-    public void setAddress(String address) {
-        this.address = address;
+    // Override #1
+    @Override
+    public String work() {
+        return "Client brings animals to the clinic";
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-
-    public String getAddress() {
-        return address;
-    }
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getClientName() {
-        return super.getName();
-    }
-    public int getClientId() {
-        return super.getId();
+    // Override #2
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", phone=" + phoneNumber +
+                ", address='" + address + '\'' +
+                ", status=" + getStatus() +
+                '}';
     }
 }
-
