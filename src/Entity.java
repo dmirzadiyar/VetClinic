@@ -46,6 +46,6 @@ public abstract class Entity {
         return active ? "Active" : "Inactive";
     }
 
-    // Полиморфизм
+
     public abstract String work();
 }

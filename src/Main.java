@@ -66,7 +66,7 @@ public class Main {
                     System.out.println(e);
                     System.out.println("Work: " + e.work());
 
-                    // instanceof + casting
+
                     if (e instanceof Veterinarian) {
                         Veterinarian v = (Veterinarian) e;
                         System.out.println("Can perform surgery: " + v.canPerformSurgery());

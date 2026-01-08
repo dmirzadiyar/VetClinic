@@ -15,8 +15,6 @@ public class Animals extends Entity {
         this.weight = weight;
     }
 
-    // ❌ УДАЛИ пустой конструктор
-    // public Animals() {}
 
     public String getSpecies() {
         return species;
@@ -49,7 +47,6 @@ public class Animals extends Entity {
         age++;
     }
 
-    // ✅ ОБЯЗАТЕЛЬНАЯ реализация
     @Override
     public String work() {
         return "Animal is being treated in the clinic";

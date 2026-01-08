@@ -42,13 +42,11 @@ public class Veterinarian extends Entity {
         available = false;
     }
 
-    // Override #1
     @Override
     public String work() {
         return "Veterinarian treats animals";
     }
 
-    // Override #2
     @Override
     public String toString() {
         return "Veterinarian{" +

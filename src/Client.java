@@ -11,13 +11,13 @@ public class Client extends Entity {
         this.phoneNumber = phoneNumber;
     }
 
-    // Override #1
+
     @Override
     public String work() {
         return "Client brings animals to the clinic";
     }
 
-    // Override #2
+
     @Override
     public String toString() {
         return "Client{" +
