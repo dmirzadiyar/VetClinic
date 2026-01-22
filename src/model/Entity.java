@@ -1,5 +1,6 @@
-public abstract class Entity {
+package model;
 
+public abstract class Entity {
     private int id;
     private String name;
     private String createdDate;
@@ -28,24 +29,15 @@ public abstract class Entity {
     }
 
     public void setName(String name) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be empty");
         }
         this.name = name;
     }
 
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
     public String getStatus() {
         return active ? "Active" : "Inactive";
     }
-
 
     public abstract String work();
 }

@@ -1,14 +1,15 @@
-public class Veterinarian extends Entity {
+package model;
+
+public class Veterinarian extends Entity implements Manageable {
 
     private String specialization;
     private int experienceYears;
     private boolean available;
     private double salary;
 
-    public Veterinarian(int id, String name, String createdDate, boolean active,
-                        String specialization, int experienceYears,
-                        boolean available, double salary) {
-
+    public Veterinarian(int id, String name, String createdDate,
+                        boolean active, String specialization,
+                        int experienceYears, boolean available, double salary) {
         super(id, name, createdDate, active);
         setSpecialization(specialization);
         setExperienceYears(experienceYears);
@@ -17,6 +18,9 @@ public class Veterinarian extends Entity {
     }
 
     public void setSpecialization(String specialization) {
+        if (specialization == null || specialization.isBlank()) {
+            throw new IllegalArgumentException("Specialization cannot be empty");
+        }
         this.specialization = specialization;
     }
 
@@ -34,12 +38,13 @@ public class Veterinarian extends Entity {
         this.salary = salary;
     }
 
-    public boolean canPerformSurgery() {
-        return experienceYears >= 5;
+    @Override
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void assignShift() {
-        available = false;
+    public boolean canPerformSurgery() {
+        return experienceYears >= 5;
     }
 
     @Override
@@ -53,9 +58,10 @@ public class Veterinarian extends Entity {
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", specialization='" + specialization + '\'' +
-                ", experience=" + experienceYears +
+                ", experienceYears=" + experienceYears +
                 ", salary=" + salary +
                 ", status=" + getStatus() +
+                ", available=" + available +
                 '}';
     }
 }
